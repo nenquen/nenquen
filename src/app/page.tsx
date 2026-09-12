@@ -1,13 +1,33 @@
 import { SiteHeader } from "@/components/site-header";
 import { QuoteCarousel } from "@/components/quote-carousel";
-import DarkVeil from "@/components/dark-veil";
+import CRTWarp from "@/components/CRTWarp";
 import { profile } from "@/data/profile";
 
 export default function Home() {
   return (
     <div className="relative flex min-h-screen flex-col text-foreground">
-      <div className="pointer-events-none fixed inset-0 -z-10">
-        <DarkVeil />
+      <div className="pointer-events-none fixed inset-0 -z-20">
+        <CRTWarp
+          color="#e9b6ff"
+          backgroundColor="#05010a"
+          speed={0.4}
+          curvature={0}
+          scanlineStrength={1}
+          scanlineFrequency={200}
+          waveAmplitude={0.25}
+          waveFrequency={3}
+          bloom={1.5}
+          bloomRadius={1}
+          noise={0}
+          vignette={0.8}
+          brightness={1.25}
+          pixelation={1}
+          rgbShift={0}
+          mouseReact={false}
+          mouseStrength={0}
+          dpr={1}
+          fps={60}
+        />
       </div>
       <div className="pointer-events-none fixed inset-0 -z-10 bg-background/45" />
       <SiteHeader />
@@ -23,29 +43,12 @@ export default function Home() {
           </h1>
           <QuoteCarousel />
         </section>
-
-        <section
-          id="about"
-          className="mx-auto w-full max-w-4xl scroll-mt-20 px-6 pb-24"
-        >
-          <h2 className="mb-8 text-sm font-semibold uppercase tracking-widest text-zinc-400">
-            About
-          </h2>
-
-          <div className="grid gap-12 md:grid-cols-[1fr_260px]">
-            <div className="space-y-4 text-base leading-relaxed text-zinc-300">
-              {profile.bio.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer className="border-t border-zinc-800/70">
-        <div className="mx-auto w-full max-w-4xl px-6 py-6 text-center">
-          <p className="font-mono text-xs text-zinc-500">
-            © {new Date().getFullYear()} {profile.name}. All rights reserved.
+      <footer className="mt-auto pb-8 pt-4">
+        <div className="mx-auto w-full max-w-4xl px-6 text-center">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-700 transition-colors hover:text-zinc-400">
+            © {new Date().getFullYear()} {profile.name}
           </p>
         </div>
       </footer>

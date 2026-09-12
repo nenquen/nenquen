@@ -63,30 +63,14 @@ export function QuoteCarousel() {
   }, [index, author]);
 
   useLayoutEffect(() => {
-    const el = textRef.current;
-    const parent = el?.parentElement;
-    if (!el || !parent) return;
-
-    const fit = () => {
-      el.style.fontSize = `${BASE_FONT}px`;
-      let size = BASE_FONT;
-      while (el.scrollWidth > parent.clientWidth && size > MIN_FONT) {
-        size -= 0.5;
-        el.style.fontSize = `${size}px`;
-      }
-    };
-
-    fit();
-    const observer = new ResizeObserver(fit);
-    observer.observe(parent);
-    return () => observer.disconnect();
+    // Removed manual font-size scaling to allow natural wrapping on mobile
   }, [index]);
 
   return (
-    <div className="mt-6 max-w-xl" aria-live="polite" aria-atomic>
+    <div className="mt-6 max-w-xl min-h-[80px]" aria-live="polite" aria-atomic>
       <p
         ref={textRef}
-        className={`truncate whitespace-nowrap text-base italic leading-[26px] text-zinc-300 transition-opacity duration-500 ${
+        className={`text-base italic leading-relaxed text-zinc-300 transition-opacity duration-500 ${
           visible ? "opacity-100" : "opacity-0"
         }`}
       >

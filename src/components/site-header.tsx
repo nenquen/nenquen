@@ -31,27 +31,27 @@ function GitHubIcon({ className }: { className?: string }) {
 }
 
 const pillBase =
-  "flex h-9 items-center gap-1.5 whitespace-nowrap rounded-full px-4 text-sm font-medium transition-colors duration-150";
+  "group flex h-9 items-center gap-2 whitespace-nowrap rounded-full px-4 text-sm font-medium transition-all duration-300";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-4 z-10 mx-4 mt-4 flex justify-center">
-      <div className="flex w-full max-w-4xl items-center gap-2 rounded-full border border-zinc-800/70 bg-zinc-900/40 p-1.5 shadow-lg shadow-black/20 backdrop-blur-2xl backdrop-saturate-150">
-        <div className="ml-auto flex items-center gap-1">
+      <div className="relative flex w-full max-w-4xl items-center gap-2 overflow-hidden rounded-full border border-white/10 border-t-white/25 bg-white/5 bg-gradient-to-b from-white/10 to-transparent p-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-full before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50">
+        <div className="relative z-10 ml-auto flex items-center gap-2">
           <Link
             href="/discord"
-            className={`${pillBase} bg-[#5865F2] text-white shadow-sm hover:bg-[#4752c4]`}
+            className={`${pillBase} border border-[#5865F2]/30 bg-[#5865F2]/10 text-[#a5b0ff] shadow-[inset_0_1px_0_0_rgba(88,101,242,0.4)] hover:bg-[#5865F2]/20 hover:border-[#5865F2]/50 hover:text-white hover:shadow-[0_0_15px_rgba(88,101,242,0.4),inset_0_1px_0_0_rgba(88,101,242,0.6)]`}
           >
-            <DiscordIcon className="h-4 w-4" />
+            <DiscordIcon className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
             Discord
           </Link>
           <a
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${pillBase} bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700`}
+            className={`${pillBase} border border-white/10 bg-white/5 text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:bg-white/10 hover:border-white/20 hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.1),inset_0_1px_0_0_rgba(255,255,255,0.2)]`}
           >
-            <GitHubIcon className="h-4 w-4" />
+            <GitHubIcon className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
             GitHub
           </a>
         </div>

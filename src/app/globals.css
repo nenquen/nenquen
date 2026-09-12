@@ -2,6 +2,13 @@
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+@font-face {
+  font-family: 'gg sans';
+  src: url('/fonts/ggsans.woff2') format('woff2');
+  font-weight: 400 800; /* Supports bold weights */
+  font-style: normal;
+}
+
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -13,6 +20,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-discord: 'gg sans', var(--font-geist-sans);
 }
 
 body {
