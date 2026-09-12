@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
-  title: "Discord — nenquen",
+  title: "Nen's Stuff",
   description: "Join nenquen's Discord server.",
 };
 
@@ -92,7 +92,7 @@ export default async function DiscordPage() {
             Discord
           </h1>
 
-          <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/10 border-t-white/25 bg-white/5 bg-gradient-to-b from-white/10 to-transparent p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-2xl before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50">
+          <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/10 border-t-white/25 bg-white/5 bg-gradient-to-b from-white/10 to-transparent p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-2xl before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50 [text-shadow:none]">
             <div className="relative z-10 space-y-4">
               <div className="flex items-center gap-4">
                 {avatarUrl ? (
@@ -140,7 +140,7 @@ export default async function DiscordPage() {
               </div>
 
               <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/20 px-4 py-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
-                <p className="font-mono text-xs tracking-wider text-zinc-300">
+                <p className="font-mono text-xs tracking-wider text-zinc-300 select-all cursor-copy">
                   discord.gg/{INVITE_CODE}
                 </p>
               </div>
@@ -158,13 +158,6 @@ export default async function DiscordPage() {
         </section>
       </main>
 
-      <footer className="mt-auto pb-8 pt-4">
-        <div className="mx-auto w-full max-w-4xl px-6 text-center">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-700 transition-colors hover:text-zinc-400">
-            © {new Date().getFullYear()} {profile.name}
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

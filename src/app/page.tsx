@@ -45,13 +45,6 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mt-auto pb-8 pt-4">
-        <div className="mx-auto w-full max-w-4xl px-6 text-center">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-700 transition-colors hover:text-zinc-400">
-            © {new Date().getFullYear()} {profile.name}
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
