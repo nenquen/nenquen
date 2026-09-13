@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useRef } from "react";
 
 import { profile } from "@/data/profile";
 import { useAchievements } from "./achievement-provider";
@@ -38,6 +39,8 @@ const pillBase =
 
 export function SiteHeader() {
   const { incrementClickCount } = useAchievements();
+  const [streak, setStreak] = useState(0);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleLogoClick = () => {
     const audio = new Audio("/sounds/sixseven.mp3");
@@ -45,6 +48,15 @@ export function SiteHeader() {
     
     // Increment the counter for the achievement
     incrementClickCount();
+    
+    // Handle streak UI
+    setStreak((prev) => prev + 1);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setStreak(0);
+    }, 1500); // Reset streak after 1.5 seconds of inactivity
   };
 
   return (
@@ -61,6 +73,17 @@ export function SiteHeader() {
             67
           </span>
         </Link>
+
+        {/* Streak Indicator */}
+        <div 
+          className={`pointer-events-none absolute left-20 z-20 transition-all duration-300 ease-out ${
+            streak > 1 ? 'translate-x-0 opacity-100 scale-100' : '-translate-x-4 opacity-0 scale-75'
+          }`}
+        >
+          <div className="flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] backdrop-blur-md">
+            {streak} Clicks
+          </div>
+        </div>
         <div className="relative z-10 ml-auto flex items-center gap-2">
           <Link
             href="/discord"
