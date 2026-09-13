@@ -25,10 +25,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-varela);
   --font-mono: var(--font-geist-mono);
-  --font-discord: 'gg sans', var(--font-geist-sans);
-  --font-boblox: 'Boblox Classic', var(--font-geist-sans);
+  --font-discord: 'gg sans', var(--font-varela);
+  --font-boblox: 'Boblox Classic', var(--font-varela);
 }
 
 body {

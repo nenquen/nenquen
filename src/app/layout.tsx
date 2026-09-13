@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Varela_Round, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AchievementProvider } from "@/components/achievement-provider";
 import { AchievementOverlay } from "@/components/achievement-overlay";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const varela = Varela_Round({
+  weight: "400",
+  variable: "--font-varela",
   subsets: ["latin"],
 });
 
@@ -22,7 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-theme="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col antialiased select-none`}
+        className={`${varela.variable} ${geistMono.variable} min-h-full flex flex-col antialiased select-none`}
       >
         <AchievementProvider>
           {children}
