@@ -5,6 +5,15 @@ import { useState, useRef } from "react";
 
 import { profile } from "@/data/profile";
 import { useAchievements } from "./achievement-provider";
+import { ChatOverlay } from "./chat-overlay";
+
+function MessageCircleIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+    </svg>
+  );
+}
 
 function DiscordIcon({ className }: { className?: string }) {
   return (
@@ -41,6 +50,7 @@ export function SiteHeader() {
   const { incrementClickCount, unlockAchievement } = useAchievements();
   const [streak, setStreak] = useState(0);
   const [isStreakActive, setIsStreakActive] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleLogoClick = () => {
@@ -68,8 +78,9 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-4 z-10 mx-4 mt-4 flex justify-center [text-shadow:none]">
-      <div className="relative flex w-full max-w-4xl items-center gap-2 overflow-hidden rounded-full border border-white/10 border-t-white/25 bg-white/5 bg-gradient-to-b from-white/10 to-transparent p-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-full before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50">
+    <>
+      <header className="sticky top-4 z-10 mx-4 mt-4 flex justify-center [text-shadow:none]">
+        <div className="relative flex w-full max-w-4xl items-center gap-2 overflow-hidden rounded-full border border-white/10 border-t-white/25 bg-white/5 bg-gradient-to-b from-white/10 to-transparent p-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-full before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50">
         <Link href="/" onClick={handleLogoClick} className="relative z-10 flex self-center pl-4 pr-2 font-boblox text-3xl font-normal tracking-tighter transition-transform hover:scale-105 active:scale-95">
           <span
             className="-translate-y-[2px] text-white"
@@ -93,6 +104,13 @@ export function SiteHeader() {
           </div>
         </div>
         <div className="relative z-10 ml-auto flex items-center gap-2">
+          <button
+            onClick={() => setIsChatOpen(true)}
+            className={`${pillBase} border border-[#c084fc]/30 bg-[#c084fc]/10 text-[#e1c4ff] shadow-[inset_0_1px_0_0_rgba(192,132,252,0.4)] hover:bg-[#c084fc]/20 hover:border-[#c084fc]/50 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.4),inset_0_1px_0_0_rgba(192,132,252,0.6)]`}
+          >
+            <MessageCircleIcon className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
+            <span className="hidden sm:inline">Chat</span>
+          </button>
           <Link
             href="/discord"
             className={`${pillBase} border border-[#5865F2]/30 bg-[#5865F2]/10 text-[#a5b0ff] shadow-[inset_0_1px_0_0_rgba(88,101,242,0.4)] hover:bg-[#5865F2]/20 hover:border-[#5865F2]/50 hover:text-white hover:shadow-[0_0_15px_rgba(88,101,242,0.4),inset_0_1px_0_0_rgba(88,101,242,0.6)]`}
@@ -112,5 +130,7 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
+    <ChatOverlay isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+    </>
   );
 }
