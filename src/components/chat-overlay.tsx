@@ -26,8 +26,26 @@ export function ChatOverlay({
   const [newMessage, setNewMessage] = useState("");
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRendered, setIsRendered] = useState(isOpen);
+  const [isVisible, setIsVisible] = useState(isOpen);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const adminDiscordId = process.env.NEXT_PUBLIC_ADMIN_DISCORD_ID;
+
+  // Handle Mount/Unmount Animations using CSS Transitions
+  useEffect(() => {
+    if (isOpen) {
+      setIsRendered(true);
+      // Small delay to ensure the element is in the DOM before triggering the transition
+      const frame = requestAnimationFrame(() => {
+        requestAnimationFrame(() => setIsVisible(true));
+      });
+      return () => cancelAnimationFrame(frame);
+    } else {
+      setIsVisible(false);
+      const timer = setTimeout(() => setIsRendered(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   // Listen for auth changes
   useEffect(() => {
@@ -46,7 +64,7 @@ export function ChatOverlay({
 
   // Fetch initial messages and subscribe to real-time updates
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isRendered) return;
 
     const fetchMessages = async () => {
       const { data, error } = await supabase
@@ -153,15 +171,17 @@ export function ChatOverlay({
     setIsLoading(false);
   };
 
-  if (!isOpen) return null;
+  if (!isRendered) return null;
 
   return (
     <>
       <div 
-        className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm animate-in fade-in duration-300"
+        className={`fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}
         onClick={onClose}
       />
-      <div className="fixed top-0 left-0 bottom-0 z-[110] flex w-[380px] max-w-[85vw] flex-col overflow-hidden border-r border-[#c084fc]/20 border-t-[#c084fc]/40 bg-[#0a0210]/90 shadow-[50px_0_50px_rgba(145,99,203,0.1),inset_0_1px_0_0_rgba(192,132,252,0.2)] backdrop-blur-3xl backdrop-saturate-200 animate-in slide-in-from-left duration-300 before:absolute before:inset-x-0 before:top-0 before:h-1/3 before:bg-gradient-to-b before:from-[#c084fc]/10 before:to-transparent before:opacity-50">
+      <div 
+        className={`fixed top-0 left-0 bottom-0 z-[110] flex w-full sm:w-[380px] max-w-none sm:max-w-[85vw] flex-col overflow-hidden border-r border-[#c084fc]/20 border-t-[#c084fc]/40 bg-[#0a0210]/90 shadow-[50px_0_50px_rgba(145,99,203,0.1),inset_0_1px_0_0_rgba(192,132,252,0.2)] backdrop-blur-xl backdrop-saturate-150 before:absolute before:inset-x-0 before:top-0 before:h-1/3 before:bg-gradient-to-b before:from-[#c084fc]/10 before:to-transparent before:opacity-50 transition-all duration-300 ease-out ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}
+      >
         
         <div className="relative z-10 flex items-center justify-between border-b border-white/5 bg-black/20 p-5">
           <div className="flex items-center gap-3">
