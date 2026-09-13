@@ -28,6 +28,12 @@ export const ACHIEVEMENTS_DATA: Achievement[] = [
     description: "You clicked 67 exactly 67 times.",
     unlockedAt: null,
   },
+  {
+    id: "click_6767",
+    title: "Get a job dude",
+    description: "You clicked 67 exactly 6,767 times. Seriously?",
+    unlockedAt: null,
+  },
 ];
 
 export function AchievementProvider({ children }: { children: React.ReactNode }) {
@@ -67,9 +73,11 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
     setClickCount((prev) => {
       const newCount = prev + 1;
       
-      // Check for unlock condition
+      // Check for unlock conditions
       if (newCount === 67) {
         unlockAchievement("click_67");
+      } else if (newCount === 6767) {
+        unlockAchievement("click_6767");
       }
       
       return newCount;

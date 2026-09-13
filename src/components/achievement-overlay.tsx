@@ -65,6 +65,8 @@ export function AchievementOverlay() {
           <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#5865F2]/30 bg-[#5865F2]/20 text-[#a5b0ff] shadow-[inset_0_1px_0_0_rgba(88,101,242,0.4)]">
             {toastData.id === 'click_67' ? (
               <span className="font-boblox text-lg text-white" style={{ textShadow: "-1px -1px 0 #9163cb, 1px -1px 0 #9163cb, -1px 1px 0 #9163cb, 1px 1px 0 #9163cb, 0 1.5px 0 #9163cb, 0 2px 0 #9163cb, 0 3px 3px rgba(0,0,0,0.3)" }}>67</span>
+            ) : toastData.id === 'click_6767' ? (
+              null /* Blank for now */
             ) : (
               <div className="h-5 w-5 bg-current [mask-image:url('/icons/trophy.svg')] [mask-size:contain] [mask-repeat:no-repeat]" />
             )}
@@ -110,10 +112,12 @@ export function AchievementOverlay() {
                         : "border-white/10 bg-white/5 bg-gradient-to-b from-white/10 to-transparent opacity-60 grayscale backdrop-blur-md"
                     }`}
                   >
-                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${isUnlocked ? 'border-[#5865F2]/30 bg-[#5865F2]/20 text-[#a5b0ff]' : 'border-white/10 bg-white/5 text-white/30'}`}>
+                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${isUnlocked ? 'border-[#5865F2]/40 bg-[#5865F2]/20 text-[#a5b0ff] shadow-[0_0_15px_rgba(88,101,242,0.3)]' : 'border-white/10 bg-white/5 text-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]'}`}>
                       {isUnlocked ? (
                         ach.id === 'click_67' ? (
                           <span className="font-boblox text-xl text-white" style={{ textShadow: "-1px -1px 0 #9163cb, 1px -1px 0 #9163cb, -1px 1px 0 #9163cb, 1px 1px 0 #9163cb, 0 1.5px 0 #9163cb, 0 2px 0 #9163cb, 0 3px 3px rgba(0,0,0,0.3)" }}>67</span>
+                        ) : ach.id === 'click_6767' ? (
+                          null /* Blank for now */
                         ) : (
                           <div className="h-6 w-6 bg-current [mask-image:url('/icons/trophy.svg')] [mask-size:contain] [mask-repeat:no-repeat]" />
                         )
