@@ -55,7 +55,11 @@ export function ChatOverlay({
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "messages" },
         (payload) => {
-          setMessages((prev) => [...prev, payload.new as Message]);
+          setMessages((prev) => {
+            // Prevent duplicate messages if we already added it optimistically
+            if (prev.some((m) => m.id === payload.new.id)) return prev;
+            return [...prev, payload.new as Message];
+          });
           scrollToBottom();
         }
       )
@@ -79,12 +83,21 @@ export function ChatOverlay({
     setIsLoading(true);
     localStorage.setItem("chat_nickname", nickname);
 
-    const { error } = await supabase
+    // Insert and immediately return the inserted row
+    const { data, error } = await supabase
       .from("messages")
-      .insert([{ nickname: nickname.trim(), content: newMessage.trim() }]);
+      .insert([{ nickname: nickname.trim(), content: newMessage.trim() }])
+      .select()
+      .single();
 
-    if (!error) {
+    if (!error && data) {
+      // Add it instantly to our own screen without waiting for the WebSockets!
+      setMessages((prev) => {
+        if (prev.some((m) => m.id === data.id)) return prev;
+        return [...prev, data];
+      });
       setNewMessage("");
+      scrollToBottom();
     }
     setIsLoading(false);
   };
