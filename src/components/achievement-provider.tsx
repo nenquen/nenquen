@@ -17,6 +17,7 @@ interface AchievementContextType {
   setIsMenuOpen: (isOpen: boolean) => void;
   recentUnlock: Achievement | null;
   clearRecentUnlock: () => void;
+  unlockAchievement: (id: string) => void;
 }
 
 const AchievementContext = createContext<AchievementContextType | undefined>(undefined);
@@ -70,18 +71,7 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
   }, [clickCount, achievements]);
 
   const incrementClickCount = useCallback(() => {
-    setClickCount((prev) => {
-      const newCount = prev + 1;
-      
-      // Check for unlock conditions
-      if (newCount === 67) {
-        unlockAchievement("click_67");
-      } else if (newCount === 6767) {
-        unlockAchievement("click_6767");
-      }
-      
-      return newCount;
-    });
+    setClickCount((prev) => prev + 1);
   }, []);
 
   const unlockAchievement = useCallback((id: string) => {
@@ -110,6 +100,7 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
         setIsMenuOpen,
         recentUnlock,
         clearRecentUnlock,
+        unlockAchievement,
       }}
     >
       {children}

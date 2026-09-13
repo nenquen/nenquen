@@ -38,8 +38,9 @@ const pillBase =
   "group flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-full px-3 sm:px-4 text-sm font-medium transition-all duration-300";
 
 export function SiteHeader() {
-  const { incrementClickCount } = useAchievements();
+  const { incrementClickCount, unlockAchievement } = useAchievements();
   const [streak, setStreak] = useState(0);
+  const [isStreakActive, setIsStreakActive] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleLogoClick = () => {
@@ -49,14 +50,21 @@ export function SiteHeader() {
     // Increment the counter for the achievement
     incrementClickCount();
     
-    // Handle streak UI
-    setStreak((prev) => prev + 1);
+    // Calculate new streak: start over if it previously timed out
+    const newStreak = isStreakActive ? streak + 1 : 1;
+    setStreak(newStreak);
+    setIsStreakActive(true);
+    
+    // Strict streak unlocks (side-effects outside setState)
+    if (newStreak === 67) unlockAchievement("click_67");
+    if (newStreak === 6767) unlockAchievement("click_6767");
+
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
     timeoutRef.current = setTimeout(() => {
-      setStreak(0);
-    }, 1500); // Reset streak after 1.5 seconds of inactivity
+      setIsStreakActive(false); // Hide it, but don't reset the number so it fades out with the old number!
+    }, 2500); // Reset streak after 2.5 seconds of inactivity
   };
 
   return (
@@ -77,10 +85,10 @@ export function SiteHeader() {
         {/* Streak Indicator */}
         <div 
           className={`pointer-events-none absolute left-20 z-20 transition-all duration-300 ease-out ${
-            streak > 1 ? 'translate-x-0 opacity-100 scale-100' : '-translate-x-4 opacity-0 scale-75'
+            isStreakActive && streak > 1 ? 'translate-x-0 opacity-100 scale-100' : '-translate-x-4 opacity-0 scale-75'
           }`}
         >
-          <div className="flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] backdrop-blur-md">
+          <div className="flex items-center justify-center rounded-full border border-white/10 bg-black/40 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
             {streak} Clicks
           </div>
         </div>
