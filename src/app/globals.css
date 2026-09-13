@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Boblox Classic';
+  src: url('/fonts/BobloxClassic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
@@ -21,6 +28,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-discord: 'gg sans', var(--font-geist-sans);
+  --font-boblox: 'Boblox Classic', var(--font-geist-sans);
 }
 
 body {

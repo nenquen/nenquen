@@ -7,7 +7,6 @@ import { profile } from "@/data/profile";
 
 export const metadata: Metadata = {
   title: "Nen's Stuff",
-  description: "Join nenquen's Discord server.",
 };
 
 export const revalidate = 3600;
@@ -87,7 +86,7 @@ export default async function DiscordPage() {
 
       <main className="flex flex-1 flex-col items-center justify-center px-6 py-24">
         <section className="w-full max-w-md">
-          <p className="mb-4 font-mono text-sm text-zinc-400">join me on</p>
+          <p className="mb-4 font-mono text-sm text-zinc-400">join us on</p>
           <h1 className="font-discord text-3xl font-bold tracking-widest sm:text-4xl">
             Discord
           </h1>

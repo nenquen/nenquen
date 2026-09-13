@@ -10,10 +10,6 @@ export const profile = {
       author: "Steve Jobs",
     },
     {
-      text: "I can't tell you the key to success, but the key to failure is trying to please everyone.",
-      author: "Ed Sheeran",
-    },
-    {
       text: "Care about what other people think and you will always be their prisoner.",
       author: "Lao Tzu",
     },
