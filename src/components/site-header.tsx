@@ -80,13 +80,13 @@ export function SiteHeader() {
   return (
     <>
       <header className="sticky top-4 z-10 mx-4 mt-4 flex justify-center [text-shadow:none]">
-        <div className="relative flex w-full max-w-4xl items-center gap-2 overflow-hidden rounded-full border border-white/10 border-t-white/25 bg-white/5 bg-gradient-to-b from-white/10 to-transparent p-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-full before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50">
+        <div className="relative flex w-full max-w-4xl items-center gap-2 rounded-full border border-white/10 bg-white/5 p-1.5 backdrop-blur-xl">
         <Link href="/" onClick={handleLogoClick} className="relative z-10 flex self-center pl-4 pr-2 font-boblox text-3xl font-normal tracking-tighter transition-transform hover:scale-105 active:scale-95">
           <span
             className="-translate-y-[2px] text-white"
             style={{
-              textShadow:
-                "-1px -1px 0 #9163cb, 1px -1px 0 #9163cb, -1px 1px 0 #9163cb, 1px 1px 0 #9163cb, 0 2px 0 #9163cb, 0 3px 0 #9163cb, 0 4px 4px rgba(0,0,0,0.3)",
+              WebkitTextStroke: "1.5px #c084fc",
+              textShadow: "none",
             }}
           >
             67
@@ -99,21 +99,21 @@ export function SiteHeader() {
             isStreakActive && streak > 1 ? 'translate-x-0 opacity-100 scale-100' : '-translate-x-4 opacity-0 scale-75'
           }`}
         >
-          <div className="flex items-center justify-center rounded-full border border-white/10 bg-black/40 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
+          <div className="flex items-center justify-center rounded-full border border-white/10 bg-black/40 px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider text-zinc-300">
             {streak} Clicks
           </div>
         </div>
         <div className="relative z-10 ml-auto flex items-center gap-2">
           <button
             onClick={() => setIsChatOpen(true)}
-            className={`${pillBase} border border-[#c084fc]/30 bg-[#c084fc]/10 text-[#e1c4ff] shadow-[inset_0_1px_0_0_rgba(192,132,252,0.4)] hover:bg-[#c084fc]/20 hover:border-[#c084fc]/50 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.4),inset_0_1px_0_0_rgba(192,132,252,0.6)]`}
+            className={`${pillBase} border border-[#c084fc]/30 bg-[#c084fc]/10 text-[#e1c4ff] hover:bg-[#c084fc]/20 hover:border-[#c084fc]/50 hover:text-white hover:shadow-[0_0_15px_rgba(192,132,252,0.4)]`}
           >
             <MessageCircleIcon className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
             <span className="hidden sm:inline">Chat</span>
           </button>
           <Link
             href="/discord"
-            className={`${pillBase} border border-[#5865F2]/30 bg-[#5865F2]/10 text-[#a5b0ff] shadow-[inset_0_1px_0_0_rgba(88,101,242,0.4)] hover:bg-[#5865F2]/20 hover:border-[#5865F2]/50 hover:text-white hover:shadow-[0_0_15px_rgba(88,101,242,0.4),inset_0_1px_0_0_rgba(88,101,242,0.6)]`}
+            className={`${pillBase} border border-[#5865F2]/30 bg-[#5865F2]/10 text-[#a5b0ff] hover:bg-[#5865F2]/20 hover:border-[#5865F2]/50 hover:text-white hover:shadow-[0_0_15px_rgba(88,101,242,0.4)]`}
           >
             <DiscordIcon className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
             <span className="hidden sm:inline">Discord</span>
@@ -122,7 +122,7 @@ export function SiteHeader() {
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${pillBase} border border-white/10 bg-white/5 text-zinc-300 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] hover:bg-white/10 hover:border-white/20 hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.1),inset_0_1px_0_0_rgba(255,255,255,0.2)]`}
+            className={`${pillBase} border border-white/10 bg-white/5 text-zinc-300 hover:bg-white/10 hover:border-white/20 hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]`}
           >
             <GitHubIcon className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
             <span className="hidden sm:inline">GitHub</span>

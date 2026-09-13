@@ -53,7 +53,7 @@ export function AchievementOverlay() {
       {/* Bottom Right Menu Button */}
       <button
         onClick={() => setIsMenuOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-white/10 border-t-white/25 bg-[#0a0210]/60 bg-gradient-to-b from-white/10 to-transparent p-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 transition-transform duration-300 hover:scale-110 active:scale-95 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-full before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/5 p-1.5 backdrop-blur-xl transition-transform duration-300 hover:scale-110 active:scale-95"
         aria-label="Achievements Menu"
       >
         <div className="relative z-10 h-6 w-6 text-white/70 transition-colors hover:text-white bg-current [mask-image:url('/icons/trophy.svg')] [mask-size:contain] [mask-repeat:no-repeat]" />
@@ -61,10 +61,10 @@ export function AchievementOverlay() {
 
       {/* Toast Notification */}
       {showToast && toastData && (
-        <div className={`fixed bottom-24 right-6 z-[60] flex items-center gap-3 overflow-hidden rounded-full border border-white/10 border-t-white/25 bg-white/5 p-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-full before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50 [text-shadow:none] ${isExiting ? 'toast-exit' : 'toast-enter'}`}>
-          <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#5865F2]/30 bg-[#5865F2]/20 text-[#a5b0ff] shadow-[inset_0_1px_0_0_rgba(88,101,242,0.4)]">
+        <div className={`fixed bottom-24 right-6 z-[60] flex items-center gap-3 rounded-full border border-white/10 bg-white/5 p-1.5 backdrop-blur-xl shadow-lg [text-shadow:none] ${isExiting ? 'toast-exit' : 'toast-enter'}`}>
+          <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#5865F2]/30 bg-[#5865F2]/20 text-[#a5b0ff]">
             {toastData.id === 'click_67' ? (
-              <span className="font-boblox text-lg text-white" style={{ textShadow: "-1px -1px 0 #9163cb, 1px -1px 0 #9163cb, -1px 1px 0 #9163cb, 1px 1px 0 #9163cb, 0 1.5px 0 #9163cb, 0 2px 0 #9163cb, 0 3px 3px rgba(0,0,0,0.3)" }}>67</span>
+              <span className="font-boblox text-lg text-white" style={{ WebkitTextStroke: "1px #c084fc", textShadow: "none" }}>67</span>
             ) : toastData.id === 'click_6767' ? (
               null /* Blank for now */
             ) : (
@@ -81,7 +81,7 @@ export function AchievementOverlay() {
       {/* Achievements Menu Modal */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm animate-in fade-in duration-200 [text-shadow:none]">
-          <div className="relative w-full max-w-md overflow-hidden rounded-3xl border border-white/10 border-t-white/30 bg-black/20 bg-gradient-to-b from-white/10 to-transparent shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-3xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-3xl before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50">
+          <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-[#0a0210]/80 backdrop-blur-xl shadow-2xl">
             {/* Modal Header */}
             <div className="relative z-10 flex items-center justify-between border-b border-white/10 bg-transparent p-5">
               <div className="flex items-center gap-3">
@@ -106,16 +106,16 @@ export function AchievementOverlay() {
                 return (
                   <div 
                     key={ach.id}
-                    className={`relative flex items-center gap-4 rounded-2xl border p-4 transition-all overflow-hidden ${
+                    className={`relative flex items-center gap-4 rounded-2xl border p-4 transition-all ${
                       isUnlocked 
-                        ? "border-[#5865F2]/40 bg-[#5865F2]/10 bg-gradient-to-b from-[#5865F2]/20 to-transparent shadow-[inset_0_1px_0_0_rgba(88,101,242,0.4)] backdrop-blur-md" 
-                        : "border-white/10 bg-white/5 bg-gradient-to-b from-white/10 to-transparent opacity-60 grayscale backdrop-blur-md"
+                        ? "border-[#5865F2]/40 bg-[#5865F2]/10 backdrop-blur-md" 
+                        : "border-white/10 bg-white/5 opacity-60 grayscale backdrop-blur-md"
                     }`}
                   >
-                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${isUnlocked ? 'border-[#5865F2]/40 bg-[#5865F2]/20 text-[#a5b0ff] shadow-[0_0_15px_rgba(88,101,242,0.3)]' : 'border-white/10 bg-white/5 text-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]'}`}>
+                    <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full border ${isUnlocked ? 'border-[#5865F2]/40 bg-[#5865F2]/20 text-[#a5b0ff]' : 'border-white/10 bg-white/5 text-white/20'}`}>
                       {isUnlocked ? (
                         ach.id === 'click_67' ? (
-                          <span className="font-boblox text-xl text-white" style={{ textShadow: "-1px -1px 0 #9163cb, 1px -1px 0 #9163cb, -1px 1px 0 #9163cb, 1px 1px 0 #9163cb, 0 1.5px 0 #9163cb, 0 2px 0 #9163cb, 0 3px 3px rgba(0,0,0,0.3)" }}>67</span>
+                          <span className="font-boblox text-xl text-white" style={{ WebkitTextStroke: "1.5px #c084fc", textShadow: "none" }}>67</span>
                         ) : ach.id === 'click_6767' ? (
                           null /* Blank for now */
                         ) : (

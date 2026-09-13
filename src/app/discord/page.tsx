@@ -71,7 +71,7 @@ export default async function DiscordPage() {
             Discord
           </h1>
 
-          <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/10 border-t-white/25 bg-white/5 bg-gradient-to-b from-white/10 to-transparent p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-2xl before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50 [text-shadow:none]">
+          <div className="relative mt-8 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl shadow-lg [text-shadow:none]">
             <div className="relative z-10 space-y-4">
               <div className="flex items-center gap-4">
                 {avatarUrl ? (
