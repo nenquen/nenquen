@@ -21,9 +21,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" data-theme="dark" className={`${varela.variable} ${geistMono.variable}`}>
       <body
-        className={`${varela.variable} ${geistMono.variable} min-h-full flex flex-col antialiased select-none`}
+        className={`min-h-full flex flex-col antialiased select-none font-sans`}
       >
         <AchievementProvider>
           {children}
