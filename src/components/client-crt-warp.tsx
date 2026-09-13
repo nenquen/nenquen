@@ -21,7 +21,7 @@ export function ClientCRTWarp() {
   // We completely disable it on mobile.
   if (isMobile) {
     return (
-      <div className="absolute inset-0 bg-[#05010a] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#c084fc]/15 via-[#05010a] to-[#05010a]" />
+      <div className="absolute inset-0 bg-[#05010a] bg-gradient-to-b from-[#c084fc]/20 via-[#05010a] to-[#05010a]" />
     );
   }
 
