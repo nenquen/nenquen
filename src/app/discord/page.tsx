@@ -83,7 +83,7 @@ export default async function DiscordPage() {
                     className="h-14 w-14 shrink-0 rounded-full ring-2 ring-[#5865F2]/40"
                   />
                 ) : (
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#5865F2]/20 text-[#5865F2] ring-2 ring-[#5865F2]/40 shadow-[inset_0_1px_0_0_rgba(88,101,242,0.4)]">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#5865F2]/20 text-[#5865F2] ring-2 ring-[#5865F2]/40">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -118,7 +118,7 @@ export default async function DiscordPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/20 px-4 py-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]">
+              <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/20 px-4 py-3">
                 <p className="font-mono text-xs tracking-wider text-zinc-300 select-all cursor-copy">
                   discord.gg/{INVITE_CODE}
                 </p>
@@ -128,7 +128,7 @@ export default async function DiscordPage() {
                 href={profile.discord}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex w-full items-center justify-center rounded-full border border-[#5865F2]/30 bg-[#5865F2]/10 px-4 py-2 text-sm font-medium text-[#a5b0ff] shadow-[inset_0_1px_0_0_rgba(88,101,242,0.4)] transition-all duration-300 hover:border-[#5865F2]/50 hover:bg-[#5865F2]/20 hover:text-white hover:shadow-[0_0_15px_rgba(88,101,242,0.4),inset_0_1px_0_0_rgba(88,101,242,0.6)]"
+                className="group inline-flex w-full items-center justify-center rounded-full border border-[#5865F2]/30 bg-[#5865F2]/10 px-4 py-2 text-sm font-medium text-[#a5b0ff] transition-all duration-300 hover:border-[#5865F2]/50 hover:bg-[#5865F2]/20 hover:text-white hover:shadow-[0_0_15px_rgba(88,101,242,0.4)]"
               >
                 Join the server
               </a>
