@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import { profile } from "@/data/profile";
+import { useAchievements } from "./achievement-provider";
 
 function DiscordIcon({ className }: { className?: string }) {
   return (
@@ -36,15 +37,20 @@ const pillBase =
   "group flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-full px-3 sm:px-4 text-sm font-medium transition-all duration-300";
 
 export function SiteHeader() {
-  const playSound = () => {
+  const { incrementClickCount } = useAchievements();
+
+  const handleLogoClick = () => {
     const audio = new Audio("/sounds/sixseven.mp3");
     audio.play().catch(() => {});
+    
+    // Increment the counter for the achievement
+    incrementClickCount();
   };
 
   return (
     <header className="sticky top-4 z-10 mx-4 mt-4 flex justify-center [text-shadow:none]">
       <div className="relative flex w-full max-w-4xl items-center gap-2 overflow-hidden rounded-full border border-white/10 border-t-white/25 bg-white/5 bg-gradient-to-b from-white/10 to-transparent p-1.5 shadow-[0_8px_32px_0_rgba(0,0,0,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-2xl backdrop-saturate-200 before:absolute before:inset-x-0 before:top-0 before:h-1/2 before:rounded-t-full before:bg-gradient-to-b before:from-white/10 before:to-transparent before:opacity-50">
-        <Link href="/" onClick={playSound} className="relative z-10 flex self-center pl-4 pr-2 font-boblox text-3xl font-normal tracking-tighter transition-transform hover:scale-105 active:scale-95">
+        <Link href="/" onClick={handleLogoClick} className="relative z-10 flex self-center pl-4 pr-2 font-boblox text-3xl font-normal tracking-tighter transition-transform hover:scale-105 active:scale-95">
           <span
             className="-translate-y-[2px] text-white"
             style={{

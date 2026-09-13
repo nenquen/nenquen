@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AchievementProvider } from "@/components/achievement-provider";
+import { AchievementOverlay } from "@/components/achievement-overlay";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +24,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col antialiased select-none`}
       >
-        {children}
+        <AchievementProvider>
+          {children}
+          <AchievementOverlay />
+        </AchievementProvider>
       </body>
     </html>
   );
